@@ -1,8 +1,10 @@
 const path = require('path');
 const express = require('express');
+const cors = require('cors');
 const hbs = require('hbs');
 const forecast = require('./utils/forecast');
 const geocode = require('./utils/geocode');
+
 
 
 
@@ -20,6 +22,7 @@ app.set('views', viewsPath);
 hbs.registerPartials(partialsPath);
 
 app.use(express.static(publicDirectoryPath));
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.render('index', { 

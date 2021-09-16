@@ -19,6 +19,11 @@ messageOne.textContent = 'Loading...'
 messageTwo.textContent = ''
 
 fetch(`/weather?address=${location}`).then((response) => {
+    console.log(response.headers.get('Content-Type'));
+    console.log(response.status)
+    console.log(response.statusText)
+    console.log(response.type)
+    console.log(response.url)
     response.json().then((data) => {
         if (data.error) {
             messageOne.textContent = data.error
