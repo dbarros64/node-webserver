@@ -1,15 +1,14 @@
 const path = require('path');
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const hbs = require('hbs');
 const forecast = require('./utils/forecast');
 const geocode = require('./utils/geocode');
 
 
 
-
-
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -22,7 +21,7 @@ app.set('views', viewsPath);
 hbs.registerPartials(partialsPath);
 
 app.use(express.static(publicDirectoryPath));
-app.use(cors());
+// app.use(cors());
 
 app.get('/', (req, res) => {
     res.render('index', { 
@@ -89,6 +88,6 @@ app.get('*', (req, res) => {
 })
 
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000')
+app.listen(port, () => {
+    console.log('Server is running on port ' + port)
 });
